@@ -3,21 +3,18 @@ const router = express.Router()
 const Post = require('../models/Post');
 const auth = require('../middleware/auth')
 
-//GET ALL THE POSTS FROM DB
+//GET ALL THE POSTS OF A SPECIFIC USER FROM DB
 router.get('/:userId', auth, async (req, res) => {
   try {
     const post = await Post.find({ userId: req.params.userId })
-
-    console.log(req.params.userId);
     res.json(post);
-    console.log("post",post);
   } catch (error) {
     res.json({ message: error })
   }
 })
 
-//GET THE SPECIFIC POST FROM DB
-router.get('/:postID', auth, async (req, res) => {
+//GET THE SPECIFIC POST FROM DB FOR EDITING 
+router.get('/edit/:postID', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.postID)
     res.json(post)
@@ -27,10 +24,7 @@ router.get('/:postID', auth, async (req, res) => {
 })
 
 //SUBMIT POST
-router.post('/', auth, async (req, res) => {
-
-  console.log(req.body)
-
+router.post('/:userId', auth, async (req, res) => {
   const post = new Post({
     userId: req.body.userId,
     name: req.body.name,

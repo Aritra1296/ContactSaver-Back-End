@@ -4,16 +4,6 @@ const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-//GET ALL THE POSTS FROM DB
-router.get('/', async (req, res) => {
-  try {
-    const user = await User.find({})
-    res.json(user)
-    console.log(user)
-  } catch (error) {
-    res.json({ message: error })
-  }
-})
 
 //SUBMIT A NEW USER
 router.post('/', async (req, res) => {
@@ -33,8 +23,6 @@ router.post('/', async (req, res) => {
     //HASH THE PASSWORD
     const salt = await bcrypt.genSalt()
     const passwordHash = await bcrypt.hash(password, salt)
-    console.log('email : ', email)
-    console.log('passwordHash : ', passwordHash)
 
     //SAVE USESR
     const newUser = new User({
@@ -87,11 +75,7 @@ router.post('/login', async (req, res) => {
     )
     if (!passwordCorrect)
       return res.status(401).json({ errorMessage: 'Wrong email or password' })
-
-
-      // if (existingUser) 
-      // return res.json(existingUser)
-    
+  
   
     //SIGN TOKEN
     const token = jwt.sign(
