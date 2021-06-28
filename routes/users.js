@@ -82,7 +82,8 @@ router.post('/login', async (req, res) => {
       {
         user: existingUser._id,
       },
-      process.env.JWT_SECRET
+      process.env.JWT_SECRET,
+      
     )
 
     //SEND TOKEN TO HTTP-ONLY COOKIE

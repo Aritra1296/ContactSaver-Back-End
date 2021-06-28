@@ -24,7 +24,10 @@ router.get('/edit/:postID', auth, async (req, res) => {
 })
 
 //SUBMIT POST
-router.post('/:userId', auth, async (req, res) => {
+router.post('/submitNew', auth, async (req, res) => {
+
+  console.log(req.body)
+
   const post = new Post({
     userId: req.body.userId,
     name: req.body.name,
