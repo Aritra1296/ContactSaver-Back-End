@@ -33,4 +33,4 @@ db.on('error', console.error.bind(console, 'Connection Error:'));
 });
 
 //HOW TO START LISTENING TO SERVER
-app.listen(3006);
+app.listen(process.env.PORT);
