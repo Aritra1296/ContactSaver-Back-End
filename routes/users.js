@@ -44,6 +44,7 @@ router.post('/', async (req, res) => {
     //SEND TOKEN TO HTTP-ONLY COOKIE
     res
       .cookie('token', token, {
+        domain : process.env.COOKIE_DOMAIN,
         httpOnly: true,
       })
       .send()
@@ -89,7 +90,8 @@ router.post('/login', async (req, res) => {
     //SEND TOKEN TO HTTP-ONLY COOKIE
     res
       .cookie('token', token, {
-        httpOnly: true
+        domain: process.env.COOKIE_DOMAIN,
+        httpOnly: true,
       })
       .json(existingUser)
       .send()
