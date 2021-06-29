@@ -90,9 +90,10 @@ router.post('/login', async (req, res) => {
     res
       .cookie('token', token, {
         httpOnly: true,
+        domain: "localhost"
       })
       .json(existingUser)
-      .send();
+      .send()
 
       console.log("signed in");
       
