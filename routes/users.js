@@ -89,8 +89,7 @@ router.post('/login', async (req, res) => {
     //SEND TOKEN TO HTTP-ONLY COOKIE
     res
       .cookie('token', token, {
-        httpOnly: true,
-        domain: "localhost"
+        httpOnly: true
       })
       .json(existingUser)
       .send()
