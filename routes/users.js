@@ -88,6 +88,10 @@ router.post('/login', async (req, res) => {
     )
 
     //SEND TOKEN TO HTTP-ONLY COOKIE
+    console.log({
+      domain: process.env.COOKIE_DOMAIN,
+      httpOnly: true,
+    })
     res
       .cookie('token', token, {
         domain: process.env.COOKIE_DOMAIN,
@@ -95,7 +99,7 @@ router.post('/login', async (req, res) => {
       })
       .json(existingUser)
       .send()
-
+     
       console.log("signed in");
       
   } catch (error) {
