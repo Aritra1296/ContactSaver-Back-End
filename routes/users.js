@@ -127,6 +127,7 @@ router.get('/logout', async (req, res) => {
   console.log('logged out')
   res
     .cookie('token', '', {
+      domain: process.env.COOKIE_DOMAIN,
       httpOnly: true,
       expires: new Date(0),
     })
